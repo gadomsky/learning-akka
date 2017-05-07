@@ -29,9 +29,4 @@ class AkkademyDb extends Actor {
       log.info("received unknown message: {}", o)
       Status.Failure(new ClassNotFoundException)
   }
-
-  def main(args: Array[String]): Unit = {
-    val system = ActorSystem("akkademy")
-    system.actorOf(Props[AkkademyDb], name = "akkademy-db")
-  }
 }
