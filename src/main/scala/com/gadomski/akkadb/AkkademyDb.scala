@@ -15,6 +15,9 @@ class AkkademyDb extends Actor {
 
   override def receive: Receive = {
     case SetRequest(key, value) => {
+      println("Start proceeding req " + key)
+      Thread.sleep(1000)
+      println("End proceeding req" + value)
       log.info("received SetRequest [ key: {}, value: {}]", key, value)
       map.put(key, value)
     }
