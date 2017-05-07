@@ -1,8 +1,8 @@
 package com.gadomski.akkadb
 
-import akka.actor.{Actor, Status}
+import akka.actor.{Actor, ActorSystem, Props, Status}
 import akka.event.Logging
-import com.gadomski.akkadb.messages.{GetRequest, KeyNotFoundException, SetRequest, messages}
+import com.gadomski.akkadb.messages.{GetRequest, KeyNotFoundException, SetRequest}
 
 import scala.collection.mutable.HashMap
 
@@ -28,5 +28,10 @@ class AkkademyDb extends Actor {
     case o =>
       log.info("received unknown message: {}", o)
       Status.Failure(new ClassNotFoundException)
+  }
+
+  def main(args: Array[String]): Unit = {
+    val system = ActorSystem("akkademy")
+    system.actorOf(Props[AkkademyDb], name = "akkademy-db")
   }
 }
