@@ -2,7 +2,7 @@ package com.gadomski.akkadb
 
 import akka.actor.Actor
 import akka.event.Logging
-import com.gadomski.akkadb.messages.SetRequest
+import com.gadomski.akkadb.messages.{SetRequest, messages}
 
 import scala.collection.mutable.HashMap
 
