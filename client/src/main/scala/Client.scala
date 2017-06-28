@@ -3,6 +3,7 @@ import akka.pattern.ask
 import akka.util.Timeout
 import com.gadomski.akkadb.messages.{GetRequest, SetRequest}
 
+import scala.concurrent.Future
 import scala.concurrent.duration._
 
 /**
@@ -13,10 +14,10 @@ class Client(remoteAddress: String) {
   private implicit val system = ActorSystem("LocalSystem")
   private val remoteDb = system.actorSelection(s"akka.tcp://akkademy@$remoteAddress/user/akkademy-db")
 
-  def set(key: String, value: Object) = {
+  def set(key: String, value: Object): Future[Any] = {
     remoteDb ? SetRequest(key, value)
   }
-  def get(key: String) = {
+  def get(key: String): Future[Any] = {
     remoteDb ? GetRequest(key)
   }
 }
